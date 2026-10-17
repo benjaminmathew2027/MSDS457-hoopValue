@@ -8,6 +8,8 @@ Description: Tools for measuring the value of NBA players with advanced
     converting raw totals to per 100 possession rates so players on fast
     and slow teams can be compared fairly.
 License: MIT + file LICENSE
+Depends: R (>= 3.5)
+LazyData: true
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 Suggests:
