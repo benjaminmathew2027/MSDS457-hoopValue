@@ -43,6 +43,15 @@ The components are:
 \item \code{tov_100}: turnovers per 100 possessions (weighted negatively)
 }
 }
+\section{Known limitation}{
+
+With equal weights, the score tends to favor efficient, low-usage centers,
+because rebounds, blocks, and high true shooting percentages are common at
+that position. Comparing players within the same \code{position}, or raising the
+weight on \code{pts_100} and \code{ast_100}, reduces this effect. A position
+adjustment is planned for a future version.
+}
+
 \examples{
 scores <- player_value_score(nba_players_2026, min_minutes = 1000)
 head(scores[, c("player", "team", "value_score", "value_rank")])
@@ -50,3 +59,12 @@ head(scores[, c("player", "team", "value_score", "value_rank")])
 # Give scoring efficiency twice as much weight
 player_value_score(nba_players_2026, weights = c(ts_pct = 2))[1:5, "player"]
 }
+\seealso{
+\code{\link[=calc_true_shooting]{calc_true_shooting()}} and \code{\link[=calc_per_100]{calc_per_100()}}, which calculate the
+components.
+
+Other player metrics:
+\code{\link[=calc_per_100]{calc_per_100()}},
+\code{\link[=calc_true_shooting]{calc_true_shooting()}}
+}
+\concept{player metrics}

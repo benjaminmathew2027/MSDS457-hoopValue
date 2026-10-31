@@ -29,6 +29,16 @@
 #'   and a `value_rank` column (1 = highest score). Sorted by `value_score`
 #'   from highest to lowest.
 #'
+#' @section Known limitation:
+#' With equal weights, the score tends to favor efficient, low-usage centers,
+#' because rebounds, blocks, and high true shooting percentages are common at
+#' that position. Comparing players within the same `position`, or raising the
+#' weight on `pts_100` and `ast_100`, reduces this effect. A position
+#' adjustment is planned for a future version.
+#'
+#' @seealso [calc_true_shooting()] and [calc_per_100()], which calculate the
+#'   components.
+#' @family player metrics
 #' @export
 #'
 #' @examples

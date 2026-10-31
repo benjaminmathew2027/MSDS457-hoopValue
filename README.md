@@ -1,8 +1,14 @@
 # hoopvalue
 
-hoopvalue is an R package for measuring the value of NBA players with advanced analytics. It turns box score totals into efficiency and per-possession measures, combines them into one overall value score, and ships with season totals for every player from the 2025-26 NBA regular season.
+hoopvalue is an R package for measuring the value of NBA players with advanced analytics. It turns box score totals into efficiency and per 100 possession measures, combines them into one overall value score, and includes season totals for every player from the 2025-26 NBA regular season.
 
-It is being built as the final project for a sports management analytics course.
+## Who it is for
+
+- **Analysts and students** who want tested, documented functions for common basketball metrics instead of rewriting formulas by hand.
+- **Front office staff and coaches** who want a quick way to rank and compare players.
+- **Fans** who want to go beyond points per game when debating who the best players are.
+
+No basketball analytics background is needed. Each function's help page explains what the metric means and how it is calculated.
 
 ## Installation
 
@@ -20,7 +26,7 @@ remotes::install_github("benjaminmathew2027/MSDS457-hoopValue")
 | `calc_per_100()` | Converts any stat total to a per 100 possession rate |
 | `player_value_score()` | Combines six advanced stats into one value score with adjustable weights |
 
-## Example
+## Basic usage
 
 ```r
 library(hoopvalue)
@@ -29,13 +35,27 @@ library(hoopvalue)
 calc_true_shooting(pts = 30, fga = 20, fta = 8)
 #> [1] 0.6377551
 
+# Points per 100 possessions for every player in the dataset
+nba_players_2026$pts_100 <- calc_per_100(nba_players_2026$pts,
+                                         nba_players_2026$possessions)
+
 # Top 5 players by overall value score (1,000+ minutes)
 scores <- player_value_score(nba_players_2026, min_minutes = 1000)
 head(scores[, c("value_rank", "player", "team", "value_score")], 5)
 ```
 
-See `vignette("getting-started", package = "hoopvalue")` for a full walkthrough.
+For a full walkthrough, see `vignette("getting-started", package = "hoopvalue")`.
 
-## Data source
+## Data and assumptions
 
-Player totals are built from ESPN box score data loaded with the hoopR package (Saiem Gilani, *hoopR: Access Men's Basketball Play by Play Data*, version 3.1.0, 2026, https://github.com/sportsdataverse/hoopR). The script that builds the dataset is in `data-raw/`.
+Player totals are built from ESPN box score data loaded with the hoopR package. The script that builds the dataset is in `data-raw/`. Box scores do not record individual possessions, so the `possessions` column is an estimate based on each team's possessions and the share of each game a player was on the court. See `?nba_players_2026` for details.
+
+## Citation
+
+Saiem Gilani, *hoopR: Access Men's Basketball Play by Play Data*, version 3.1.0, R package, 2026, https://github.com/sportsdataverse/hoopR.
+
+Sports Reference LLC, "Glossary," Basketball-Reference.com, accessed October 30, 2026, https://www.basketball-reference.com/about/glossary.html.
+
+## License
+
+MIT. See `LICENSE.md`.

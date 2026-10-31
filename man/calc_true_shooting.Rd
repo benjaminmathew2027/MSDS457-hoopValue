@@ -23,6 +23,11 @@ True shooting percentage measures how efficiently a player scores. It
 accounts for two-point shots, three-point shots, and free throws in a
 single number, using the formula \code{PTS / (2 * (FGA + 0.44 * FTA))}.
 }
+\details{
+The 0.44 multiplier estimates the share of free throw attempts
+that end a possession, since and-ones, technical fouls, and three-shot
+fouls mean not every pair of free throws uses a full possession.
+}
 \examples{
 # One player: 30 points on 20 field goal attempts and 8 free throw attempts
 calc_true_shooting(pts = 30, fga = 20, fta = 8)
@@ -30,3 +35,16 @@ calc_true_shooting(pts = 30, fga = 20, fta = 8)
 # Several players at once, including one with no attempts
 calc_true_shooting(pts = c(30, 12, 0), fga = c(20, 10, 0), fta = c(8, 2, 0))
 }
+\references{
+Sports Reference LLC, "Glossary," Basketball-Reference.com,
+\url{https://www.basketball-reference.com/about/glossary.html}.
+}
+\seealso{
+\code{\link[=calc_per_100]{calc_per_100()}} for scoring volume, and \code{\link[=player_value_score]{player_value_score()}},
+which uses true shooting as one of its components.
+
+Other player metrics:
+\code{\link[=calc_per_100]{calc_per_100()}},
+\code{\link[=player_value_score]{player_value_score()}}
+}
+\concept{player metrics}

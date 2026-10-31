@@ -12,6 +12,16 @@
 #'   the same length as the inputs. Returns `NA` for any player with no
 #'   field goal or free throw attempts.
 #'
+#' @details The 0.44 multiplier estimates the share of free throw attempts
+#'   that end a possession, since and-ones, technical fouls, and three-shot
+#'   fouls mean not every pair of free throws uses a full possession.
+#'
+#' @references Sports Reference LLC, "Glossary," Basketball-Reference.com,
+#'   <https://www.basketball-reference.com/about/glossary.html>.
+#'
+#' @seealso [calc_per_100()] for scoring volume, and [player_value_score()],
+#'   which uses true shooting as one of its components.
+#' @family player metrics
 #' @export
 #'
 #' @examples

@@ -2,7 +2,7 @@ Package: hoopvalue
 Title: Measure NBA Player Value with Advanced Analytics
 Version: 0.1.0
 Authors@R:
-    person("Benjamin Mathew", email = "18mathewbs@gmail.com", role = c("aut", "cre"))
+    person("Ben", email = "18mathewbs@gmail.com", role = c("aut", "cre"))
 Description: Tools for measuring the value of NBA players with advanced
     statistics. Includes functions for shooting efficiency, for converting
     raw totals to per 100 possession rates so players on fast and slow teams
@@ -10,7 +10,10 @@ Description: Tools for measuring the value of NBA players with advanced
     into one overall value score. Ships with 2025-26 regular season totals
     for every NBA player.
 License: MIT + file LICENSE
+URL: https://github.com/benjaminmathew2027/MSDS457-hoopValue
+BugReports: https://github.com/benjaminmathew2027/MSDS457-hoopValue/issues
 Encoding: UTF-8
+Language: en-US
 Roxygen: list(markdown = TRUE)
 Imports:
     stats

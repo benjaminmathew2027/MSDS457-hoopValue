@@ -1,0 +1,59 @@
+---
+title: "Getting Started with hoopvalue"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with hoopvalue}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+hoopvalue helps you measure NBA player value with advanced statistics. This
+vignette walks through the included dataset and the main functions.
+
+## The data
+
+```{r}
+library(hoopvalue)
+dim(nba_players_2026)
+head(nba_players_2026[, c("player", "team", "position", "games", "pts")])
+```
+
+## Efficiency and volume
+
+`calc_true_shooting()` measures how efficiently a player scores, and
+`calc_per_100()` puts totals on a per 100 possession scale.
+
+```{r}
+stars <- subset(nba_players_2026, player %in% c("Nikola Jokic", "Luka Doncic",
+                                                "Shai Gilgeous-Alexander"))
+data.frame(
+  player = stars$player,
+  ts_pct = round(calc_true_shooting(stars$pts, stars$fga, stars$fta), 3),
+  pts_per_100 = round(calc_per_100(stars$pts, stars$possessions), 1)
+)
+```
+
+## Overall value score
+
+`player_value_score()` combines six advanced statistics into one score.
+
+```{r}
+scores <- player_value_score(nba_players_2026, min_minutes = 1000)
+head(scores[, c("value_rank", "player", "team", "position", "value_score")], 10)
+```
+
+Weights let you decide what matters most. For example, a team looking for
+rebounding and rim protection could weight those components more heavily:
+
+```{r}
+bigs <- player_value_score(nba_players_2026, min_minutes = 1000,
+                           weights = c(reb_100 = 2, stocks_100 = 2))
+head(bigs[, c("value_rank", "player", "team", "value_score")], 5)
+```
+
+*This vignette is a work in progress. Salary-based value and plotting
+functions will be added before the final submission.*

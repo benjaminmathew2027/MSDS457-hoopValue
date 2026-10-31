@@ -20,6 +20,11 @@ Raw totals depend on how fast a team plays. Converting a stat to a per
 100 possession rate puts players on fast and slow teams on the same
 scale so they can be compared fairly.
 }
+\details{
+Individual possessions are not recorded in box scores. The
+\code{possessions} column in \link{nba_players_2026} is an estimate based on each
+team's possessions and the share of each game a player was on the court.
+}
 \examples{
 # 1,500 points over 2,400 possessions
 calc_per_100(stat = 1500, possessions = 2400)
@@ -27,3 +32,12 @@ calc_per_100(stat = 1500, possessions = 2400)
 # Several players at once, including one with no possessions
 calc_per_100(stat = c(1500, 800, 0), possessions = c(2400, 1600, 0))
 }
+\seealso{
+\code{\link[=calc_true_shooting]{calc_true_shooting()}} for scoring efficiency, and
+\code{\link[=player_value_score]{player_value_score()}}, which uses several per 100 rates.
+
+Other player metrics:
+\code{\link[=calc_true_shooting]{calc_true_shooting()}},
+\code{\link[=player_value_score]{player_value_score()}}
+}
+\concept{player metrics}

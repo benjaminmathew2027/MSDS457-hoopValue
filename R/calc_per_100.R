@@ -10,6 +10,13 @@
 #' @return A numeric vector of per 100 possession rates, the same length as
 #'   the inputs. Returns `NA` for any player with zero possessions.
 #'
+#' @details Individual possessions are not recorded in box scores. The
+#'   `possessions` column in [nba_players_2026] is an estimate based on each
+#'   team's possessions and the share of each game a player was on the court.
+#'
+#' @seealso [calc_true_shooting()] for scoring efficiency, and
+#'   [player_value_score()], which uses several per 100 rates.
+#' @family player metrics
 #' @export
 #'
 #' @examples
